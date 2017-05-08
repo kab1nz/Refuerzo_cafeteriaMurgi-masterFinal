@@ -180,6 +180,10 @@ public class ActivityLogin extends AppCompatActivity {
             case 3: Intent i3 = new Intent(getApplicationContext(), ActivityCafe.class);
                 startActivity(i3);
                 break;
+
+             case 4: Intent i4 = new Intent(getApplicationContext(), ActivityCafe.class);
+                 startActivity(i4);
+                 break;
             default:
         }
     }//Fin lanzarActivity
