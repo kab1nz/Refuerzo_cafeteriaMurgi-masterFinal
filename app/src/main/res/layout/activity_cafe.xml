@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cafe"
+    android:background="@color/fondo_blanco"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.ActivityCafe">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/tb_cf"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/coffee"
+        android:id="@+id/iv_cf_foto"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_cf"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"
+        android:layout_height="100dp"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <Button
+        android:text="@string/ac_pedir"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:background="@color/accent"
+        android:id="@+id/btn_cf_pedir"
+        android:textColor="@color/blanco"
+        android:paddingLeft="@dimen/margin_general"
+        android:paddingRight="@dimen/margin_general"
+        app:layout_constraintTop_toTopOf="@+id/tb_cf"
+        app:layout_constraintRight_toRightOf="@+id/tb_cf"
+        android:layout_marginEnd="@dimen/margin_general"
+        android:textSize="@dimen/text_size_big"
+        app:layout_constraintBottom_toBottomOf="@+id/tb_cf" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_back"
+        android:id="@+id/ib_cf_volver"
+        app:layout_constraintTop_toTopOf="@+id/tb_cf"
+        app:layout_constraintBottom_toBottomOf="@+id/tb_cf"
+        app:layout_constraintLeft_toLeftOf="@+id/tb_cf"
+        android:background="#00000000"
+        android:layout_marginStart="@dimen/margin_general" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_help"
+        android:id="@+id/ib_cf_menu"
+        android:layout_marginEnd="@dimen/margin_general"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tb_cf" />
+
+    <!-- RELATIVE -->
+
+    <RelativeLayout
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_cf"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/margin_general"
+            android:background="@color/blanco"
+            android:elevation="@dimen/margin_general"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:text="@string/ac_tipo"
+                android:textSize="@dimen/text_size_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_cf_tipo"
+                android:layout_marginTop="@dimen/margin_general"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <Spinner
+                android:layout_width="0dp"
+                android:id="@+id/sp_cf_tipo"
+                android:layout_height="24dp"
+                app:layout_constraintLeft_toLeftOf="@+id/sp_cf_azucar"
+                app:layout_constraintTop_toTopOf="@+id/tv_cf_tipo"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cf_tipo"
+                app:layout_constraintRight_toRightOf="@+id/sp_cf_azucar"
+                app:layout_constraintVertical_bias="0.42000002" />
+
+            <CheckBox
+                android:textSize="@dimen/text_size_small"
+                android:text="@string/ac_crema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_cf_crema"
+                android:onClick="metodosCheked"
+                app:layout_constraintBaseline_toBaselineOf="@+id/cb_cf_choco"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <CheckBox
+                android:textSize="@dimen/text_size_small"
+                android:text="@string/ac_chocolate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_cf_choco"
+                android:onClick="metodosCheked"
+                android:layout_marginStart="@dimen/margin_general"
+                app:layout_constraintLeft_toRightOf="@+id/cb_cf_crema"
+                android:layout_marginTop="@dimen/margin_general"
+                app:layout_constraintTop_toBottomOf="@+id/sp_cf_azucar" />
+
+            <CheckBox
+                android:textSize="@dimen/text_size_small"
+                android:text="@string/ac_hielo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_cf_hielo"
+                android:onClick="metodosCheked"
+                app:layout_constraintBaseline_toBaselineOf="@+id/cb_cf_choco"
+                android:layout_marginStart="@dimen/margin_general"
+                app:layout_constraintLeft_toRightOf="@+id/cb_cf_choco" />
+
+            <TextView
+                android:text="@string/ac_precio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_cf_precio"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_cf_precioNum"
+                android:textSize="@dimen/text_size_big"
+                android:textColor="@color/negro"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:text="0.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_cf_precioNum"
+                android:textColor="@color/accent"
+                android:textSize="@dimen/text_size_big"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/cb_cf_choco"
+                android:textStyle="normal|bold"
+                android:layout_marginStart="8dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_cf_precio" />
+
+            <TextView
+                android:textSize="@dimen/text_size_small"
+                android:text="@string/ac_leche"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_cf_lch"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_cf_tipo"
+                android:layout_marginTop="@dimen/margin_general"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cf_tipo" />
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:id="@+id/sp_cf_leche"
+                app:layout_constraintLeft_toLeftOf="@+id/sp_cf_azucar"
+                app:layout_constraintRight_toRightOf="@+id/sp_cf_azucar"
+                app:layout_constraintTop_toTopOf="@+id/tv_cf_lch"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cf_lch" />
+
+            <CheckBox
+                android:textSize="@dimen/text_size_small"
+                android:text="@string/ac_sin_lactosa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_cf_lactosa"
+                android:onClick="metodosCheked"
+                android:layout_marginTop="@dimen/margin_general"
+                app:layout_constraintTop_toBottomOf="@+id/sp_cf_leche"
+                app:layout_constraintLeft_toLeftOf="@+id/sp_cf_leche" />
+
+            <TextView
+                android:textSize="@dimen/text_size_small"
+                android:text="Azúcar:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_cf_azucar"
+                app:layout_constraintTop_toBottomOf="@+id/cb_cf_lactosa"
+                android:layout_marginTop="@dimen/margin_general"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_cf_lch" />
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:id="@+id/sp_cf_azucar"
+                app:layout_constraintTop_toTopOf="@+id/tv_cf_azucar"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cf_azucar"
+                android:layout_marginStart="@dimen/margin_general"
+                app:layout_constraintLeft_toRightOf="@+id/tv_cf_azucar"
+                android:layout_marginEnd="@dimen/margin_general"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:text="€"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_cf_eur"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_cf_precioNum"
+                android:textColor="@color/accent"
+                android:textSize="@dimen/text_size_big"
+                android:textStyle="normal|bold"
+                android:layout_marginStart="8dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_cf_precioNum" />
+        </android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/linearLayout">
+        <include layout="@layout/menu_cantidad"/>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_coffee_cup"
+        android:id="@+id/fab_cf"
+        android:scaleType="center"
+        android:layout_marginEnd="@dimen/margin_general"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        android:layout_marginBottom="@dimen/margin_general" />
+
+</android.support.constraint.ConstraintLayout>

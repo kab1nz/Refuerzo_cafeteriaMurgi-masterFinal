@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.ActivityLogin">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo_login"
+        android:scaleType="centerCrop"
+        />
+
+    <android.support.constraint.ConstraintLayout
+        android:background="@color/tono_negro"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/margin_general">
+
+        <ImageView
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_hot_drink"
+            android:id="@+id/iv_lg_icono"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/margin_general"
+            android:layout_marginEnd="@dimen/margin_general"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="35dp"
+            android:elevation="3dp"
+            android:layout_width="0dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:theme="@style/AppThemeVerde"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/fondo_blanco"
+            android:id="@+id/et_reg_usuario"
+            android:textAlignment="center"
+            android:hint="@string/al_usuari"
+            android:layout_marginEnd="@dimen/margin_general"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="@dimen/margin_general"
+            android:textColorHint="#90ffffff"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/margin_top_et_hasta_logotipo"
+            app:layout_constraintTop_toBottomOf="@+id/iv_lg_icono"
+            android:singleLine="true"
+            android:textColorLink="?attr/colorPrimaryDark" />
+
+        <EditText
+            android:textColor="@color/blanco"
+            android:textColorHint="#90ffffff"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:theme="@style/AppThemeVerde"
+            android:ems="10"
+            android:textSize="@dimen/text_size_normal"
+            android:id="@+id/et_reg_pass"
+            android:layout_marginTop="@dimen/margin_general"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/et_reg_usuario"
+            app:layout_constraintRight_toRightOf="parent"
+            android:hint="@string/al_contrase"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/margin_general"
+            android:layout_marginEnd="@dimen/margin_general"
+            android:singleLine="true"
+            android:textColorLink="?attr/colorPrimaryDark" />
+        <EditText
+            android:textColor="@color/blanco"
+            android:textColorHint="#90ffffff"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:theme="@style/AppThemeVerde"
+            android:ems="10"
+            android:textSize="@dimen/text_size_normal"
+            android:id="@+id/et_reg_email"
+            android:layout_marginTop="68dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/et_reg_usuario"
+            app:layout_constraintRight_toRightOf="parent"
+            android:hint="@string/email"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/margin_general"
+            android:layout_marginEnd="@dimen/margin_general"
+            android:singleLine="true"
+            android:textColorLink="?attr/colorPrimaryDark"
+            app:layout_constraintHorizontal_bias="1.0" />
+        <EditText
+            android:textColor="@color/blanco"
+            android:textColorHint="#90ffffff"
+            android:layout_height="wrap_content"
+            android:inputType="textPhonetic"
+            android:theme="@style/AppThemeVerde"
+            android:ems="10"
+            android:textSize="@dimen/text_size_normal"
+            android:id="@+id/et_reg_phone"
+            android:layout_marginTop="119dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/et_reg_usuario"
+            app:layout_constraintRight_toRightOf="parent"
+            android:hint="@string/telefono"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/margin_general"
+            android:layout_marginEnd="@dimen/margin_general"
+            android:singleLine="true"
+            android:textColorLink="?attr/colorPrimaryDark"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_registrar" />
+        <ImageView
+            android:text="@string/al_usuario"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/tv_reg_usuario"
+            android:src="@drawable/ic_user_login"
+            android:layout_marginStart="@dimen/margin_left_iconos"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_reg_usuario"
+            app:layout_constraintVertical_bias="0.3"
+            android:layout_marginLeft="24dp" />
+
+        <ImageView
+            android:src="@drawable/ic_candado"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/tv_lg_pass"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/et_reg_pass"
+            app:layout_constraintTop_toTopOf="@+id/et_reg_pass"
+            android:layout_marginStart="@dimen/margin_left_iconos"
+            app:layout_constraintVertical_bias="0.3" />
+
+
+
+        <Button
+            android:textColor="@color/blanco"
+            android:text="@string/registrar"
+            android:layout_width="0dp"
+            android:background="@color/tono_negro_oscuro"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:id="@+id/btn_registrar"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_reg_pass"
+            android:layout_marginStart="@dimen/margin_general"
+            android:layout_marginEnd="@dimen/margin_general"
+            android:layout_marginTop="126dp"
+            app:layout_constraintHorizontal_bias="0.25" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imagen_correo"
+            android:src="@drawable/ic_email_black_24dp"
+            tools:layout_editor_absoluteY="322dp"
+            android:layout_marginStart="@dimen/margin_left_iconos"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="16dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_local_phone_black_24dp"
+            tools:layout_editor_absoluteY="373dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="@+id/et_reg_phone" />
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_help"
+        android:id="@+id/ibtn_lg_ayuda"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/margin_general"
+        android:layout_marginEnd="@dimen/margin_general"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/primary"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:text="-"
+        android:textColor="@color/blanco"
+        android:background="@color/primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="0dp"
+        android:textSize="@dimen/text_size_big"
+        android:id="@+id/btn_cnt_menos"
+        android:elevation="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/tv_cnt_cantidad"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textStyle="normal|bold"
+        app:layout_constraintHorizontal_bias="0.7" />
+
+    <Button
+        android:elevation="0dp"
+        android:textColor="@color/blanco"
+        android:text="+"
+        android:textSize="@dimen/text_size_big"
+        android:background="@color/primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_cnt_mas"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tv_cnt_cantidad"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_cnt_cantidad"
+        app:layout_constraintHorizontal_bias="0.3" />
+
+    <TextView
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/text_size_big"
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_cnt_cantidad"
+        app:layout_constraintRight_toLeftOf="@+id/btn_cnt_mas"
+        app:layout_constraintLeft_toRightOf="@+id/btn_cnt_menos"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_cnt_menos"
+        android:textStyle="normal|bold" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,14 @@
+Las líenas pueden cambiar conforme se va añadiendo código XD
+
+ActicityLogin
+    Linea 78
+        listener boton entrar
+            Comprobar que usuario y contraseña existen y son correctos
+
+ActivityCafe
+    Linea 60
+        Array para Spiner tipo
+            Crear array con los nombres de todos los productos (cafés)
+    Linea 66
+        OnItemSelected Spinner tipo
+            Obtener el precio de cada producto al seleccionarlo en el spinner

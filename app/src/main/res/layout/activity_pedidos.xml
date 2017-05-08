@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pedidos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_pedidos"
+
+    tools:context="a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.ActivityPedidos">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl1"
+        android:layout_width="0dp"
+        android:elevation="@dimen/elevation_listview"
+        android:background="@color/blanco"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/margin_general"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="@dimen/margin_general"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+
+         <ImageView
+             android:layout_marginStart="@dimen/margin_general"
+            android:layout_marginTop="@dimen/margin_general"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/enproceso"
+            android:id="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:text="En curso."
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/textView9"
+            android:layout_marginStart="8dp"
+            app:layout_constraintLeft_toRightOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/hecho"
+            android:id="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            android:layout_marginStart="24dp"
+            app:layout_constraintLeft_toRightOf="@+id/textView9"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" />
+        <TextView
+            android:text="Hecho."
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/textView8"
+            app:layout_constraintLeft_toRightOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            android:layout_marginStart="8dp" />
+        <ListView
+            android:layout_below="@id/cl1"
+            android:id="@+id/lvAPedidos"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/margin_general"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

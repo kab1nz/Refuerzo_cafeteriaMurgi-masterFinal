@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <color name="primary">#46a79a</color>
+    <color name="primary_dark">#38857c</color>
+    <color name="accent">#ff6138</color>
+    <!--<color name="accent">#38857c</color>-->
+
+    <!-- otros -->
+    <color name="negro">#000000</color>
+    <color name="blanco">#fff</color>
+    <color name="fondo_blanco">#ededed</color>
+    <color name="fondo_primary">#b1b1b1</color>
+    <color name="tono_negro">#b9393e43</color>
+    <color name="tono_negro_oscuro">#5a000000</color>
+
+    <!-- pedidos -->
+    <color name="hecho">#90d78f</color>
+    <color name="enproceso">#e1b1b1</color>
+</resources>

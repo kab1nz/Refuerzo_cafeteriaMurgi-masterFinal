@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Proyecto_Trimestre_2_Cafeteria</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="ac_pedir">Fragen</string>
+    <string name="ac_tipo">Typus:</string>
+    <string name="ac_leche">Milch:</string>
+    <string name="ac_sin_lactosa">Ohne Laktose</string>
+    <string name="ac_crema">Creme</string>
+    <string name="ac_chocolate">Schokolade</string>
+    <string name="ac_hielo">Eis</string>
+    <string name="ac_precio">Preis:</string>
+    <string name="ad_resumen">Resümee:</string>
+    <string name="ad_hora_de_recogida">Sammlung Zeit:</string>
+    <string name="ad_total">Betrag:</string>
+    <string name="ad_confirmar_pedido">Bestellung bestätigen</string>
+    <string name="al_usuario">Benutzer</string>
+    <string name="al_contraseña">Kennwort</string>
+    <string name="al_usuari">Benutzer</string>
+    <string name="al_contrase">Kennwort</string>
+    <string name="al_entrar">Eingeben</string>
+    <string name="al_red_local">Lokales Netzwerk</string>
+    <string name="al_red_externa">Externes Netzwerk</string>
+    <string name="ap_actualizar_pedidos">Update bestellen</string>
+    <string name="apd_nombre_cliente">Kundenname</string>
+    <string name="dp_contraseñas">Passwörter:</string>
+    <string name="dp_aceptar">Akzeptieren</string>
+    <string name="lp_nombre_del_cliente">Kundenname</string>
+    <string name="lpp_nombre_del_cafe">name Kaffee</string>
+</resources>

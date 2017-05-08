@@ -1,0 +1,279 @@
+//------------------------------------------------------------------------------------------------\\
+Gand: Para la parte gráfica yo sólo explicaría el contenido de los Activitys
+    Cliente:
+        -ListView con adapter para mostar el menú de la cafetería **(Deprecated)**
+        -Vista detalles hora de recogida del pedido (Añadido)
+        -Vista resumen con adapter para confirmar pedido con precio(añadido)
+    Camarero:
+        -ListView con adapter para mostar lista de pedidos
+        -Vista detalles con adapter para los productos de cada pedido
+        -Vista resumen con adapter para pagar el pedido
+
+    Y ya que cada uno lo implemente como quiera y con el diseño que quiera, que creo que de esto no
+    hay que explicar mucho porque se debería saber como hacerlo.
+//------------------------------------------------------------------------------------------------\\
+
+//--------------------------AÑADIDO AL DOCUMENTO FINAL----------------------------------------------------\\
+Manolo: Conexion a MySQL
+    Para agregar correctamente el conector:
+
+    0 - Copiar el conector (3.0.17-ga-bin, el 5 no funciona)a la carpeta del proyecto "Proyecto_Trimestre_2_Cafeteria\app"
+
+    1 - Ir a: File / Proyect Structure/
+    2 - Hacer simple click en "app" (a la izquierda)
+    3 - Hacer simple click en "Dependencies" (arriba a la derecha)
+    4 - Pulsar el simbolo + (el de la derecha, no el de la izquierda)
+    5 - Agregar "File Dependenci" (se abre un buscador y agregamos nuestro archivo copiado anteriormente)
+
+    6 - Se necesita cargar en algun momento antes de la conexion la sentencia:
+            "Class.forName("com.mysql.jdbc.Driver");"
+
+//---------------------Añadido a la documentacion final----------------------------------------------------------------\\
+
+Manolo: Permisos
+
+    Para poder usar internet hay que agregar los permisos:
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+        <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    Mirar el archivo manifest para apreciar donde van situadas las etiquetas
+
+//------------------------------------------------------------------------------------------------\\
+
+//------------------------------------------------------------------------------------------------\\
+****
+Ruben: Añadida explicacion al documento, falta el ejemplo de ilustracion una vez terminado en HiloConexionBBDD
+***
+
+Manolo: AsynTask
+
+    AsysTask, al igual que lo Thread, son hilos que se ejecutan en segundo plano con la peculiaridad
+    de disponer de metodos para poder realizar cambios en el hilo principal de manera mas facil
+
+    Ejemplo de uso basico:
+
+    import android.os.AsyncTask;
+
+    public void metodo()
+    {
+     new AsyncTask<Void,Void, ResultSet>()//Variables envolventes, no funcionan primitivos. Solo se especifica el tipo, se asociara al objeto mas adelante. p1 - parametro de doInBackGround p2 - Parametro de onProgressUpdate p3 - Parametro de onPostExecute
+            {
+                protected ResultSet doInBackground(Void... voids)//Metodo que se ejecuta en 2º plano, no puede realizar cambios directos en el hilo principal de la UI
+                {
+                    publishProgress(); //Llama al metodo onProgressUpdate (si, la llamada es diferente al nombre del metodo)
+                    return resultado;
+                }
+
+                protected void onProgressUpdate(Void... mensaje)//Metodo lanzado desde el segundo plano que realiza cambios en la UI
+                {
+                }
+
+                @Override
+                protected void onPostExecute(ResultSet resultSet)//Igual que onProgressUpdate, la diferencia esta en que el anterior puede ser llamado tantas veces y cuando se quiera mientras que este se llama automaticamente al finalizar el onDoInBackground
+                {
+                    super.onPostExecute(resultSet);
+
+                }
+            }.execute(null, null, null); Parametros de entrada (Instancias inicializadas) p1 - parametro de doInBackGround p2 - Parametro de onProgressUpdate p3 - Parametro de onPostExecute
+
+            //Nota 1: Aunque usemos por ejemplo un parametro de entrada String, el metodo lo tratara como un array. Hay que especificar la posicion, suele ser posicion 0
+                           // Ejemplo:
+
+                 protected void doInBackground(String... palabras)
+                 {
+                        String auxiliar = palabras[0];
+                        return null;
+                 }
+        }
+     }
+
+//------------------------------------AÑADIDO AL DOCUMENTO FINAL ----------------------------------------\\
+
+Manolo conexion a BBDD:
+Conexion Base datos: base20171
+         usuario: ubase20171
+         pass: pbase20171
+
+         host
+         	- Desde casa www.iesmurgi.org
+         	- Desde el centro 10.10.4.150
+
+         	"mysql -h direccion -u usuario  -p
+
+//----------------------------------------------------------------------------------------------
+    EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL
+
+
+    Necesitamos 3 librerias que estan aqui:
+
+       https://code.google.com/archive/p/javamail-android/downloads //Agregar los tres
+
+       //Clase config
+       public class Config {
+           public static final String EMAIL ="TuDireccionEmail";
+           public static final String PASSWORD ="TuContraseña";
+       }Fin clase config
+
+    //Clase sencMail
+
+    import android.app.ProgressDialog;
+    import android.content.Context;
+    import android.os.AsyncTask;
+    import android.widget.Toast;
+    import java.util.Properties;
+    import javax.mail.Message;
+    import javax.mail.MessagingException;
+    import javax.mail.PasswordAuthentication;
+    import javax.mail.Session;
+    import javax.mail.Transport;
+    import javax.mail.internet.InternetAddress;
+    import javax.mail.internet.MimeMessage;
+
+
+
+    public class SendMail extends AsyncTask<Void,Void,Void> {
+
+        //Variables
+        private Context context;
+        private Session session;
+
+        //Informacion del email
+        private String email;
+        private String subject;
+        private String message;
+
+        //Dialogo de envio (una animacion de espera mientras se envia
+        private ProgressDialog progressDialog;
+
+        //Constructor
+        public SendMail(Context context, String email, String subject, String message){//Un objeto SendMail necesita un contexto, direccion email, asunto y mensaje
+
+            this.context = context;
+            this.email = email;
+            this.subject = subject;
+            this.message = message;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Informacion del dialogo
+            progressDialog = ProgressDialog.show(context,"Enviado Email","Por favor, espere...",false,false);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //Cierra el dialogo cuando el email a acabado (Cuando el doInBackGround a terminado)
+            progressDialog.dismiss();
+            //Mensaje de confirmacion
+            Toast.makeText(context,"Message Sent",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //Objeto que contiene las configuraciones del servidor de salida de nuestro proveedor de correo electronico
+            Properties propiedades = new Properties();
+
+            //Propiedades para Gmail, en caso de tener otro proveedor, cambiar los datos por los propios
+            propiedades.put("mail.smtp.host", "smtp.gmail.com");
+            propiedades.put("mail.smtp.socketFactory.port", "465");
+            propiedades.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            propiedades.put("mail.smtp.auth", "true");
+            propiedades.put("mail.smtp.port", "465");
+
+            //Abrimos sesion con nuestro correo
+            session = Session.getDefaultInstance(propiedades,
+                    new javax.mail.Authenticator() {
+                        //Autentificacion
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
+                        }
+                    });
+
+            try {
+                //Contenido del mensaje
+                MimeMessage mensaje = new MimeMessage(session);
+
+                //Remitente
+                mensaje.setFrom(new InternetAddress(Config.EMAIL));
+                //Destino
+                mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+                //Asunto
+                mensaje.setSubject(subject);
+                //Mensaje
+                mensaje.setText(message);
+
+                //Objeto (estatico) + metodo enviar
+                Transport.send(mensaje);
+
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    --------------------------------------------------------------------
+
+    --------AÑADIR IDIOMAS; MANOLO-------------------------------------
+   ---------------------------------
+   || Ruben: AÑADIDO AL DOCUMENTO ||
+   ---------------------------------
+    Hay 2 formas;
+        1- Con el proyecto en modo "Proyect" ir a la carpeta app/main/res/ y añadir una carpeta con
+            el nombre values-xx, por ejemplo, values-en para ingles ó values-es para español para
+            saber el codigo del pais lo buscamos con por la norma: ISO 639-1 CODE de paises
+
+            En caso de que el idioma tenga varios dialectos se especificara en una carpeta con el nombre:
+            values-xx-rXX por ejemplo values-es-rAR para el español hablado en argentina ó values-en-rGB
+            para el ingles de Reino Unido
+
+         2- Con el proyecto en modo "android" ir a la carpeta app/res/values/strings y sobre esta ultima
+         pulsamos con el boton derecho-> new -> Value Resource File. Aqui hacemos click sobre "Locate" y pulsamos
+         ">>" donde podremos elegir idioma y dialecto. Por ultimo escribimos el nombre del fichero (stirngs) y automaticamente
+         se creara el fichero donde escribiremos los string
+
+         NOTA: los string, por ejemplo:  <string name="prompt_email">Email</string> deberan tener el mismo "name"
+         en todos los idiomas para la misma frase variando unicamente el valor del elemento xml
+
+         //Ruben, saca foto de como se pone el idioma en la forma 2 que es interesante
+
+//---------------------------------------------------------------------------------------------------------------
+
+conversion conectores-mysql https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-versions.html
+
+
+//-------------------------SMS SMS SMSS SMS SMS SMS -----------------------------------------------------
+
+   ---------------------------------
+   || Ruben: AÑADIDO AL DOCUMENTO ||
+   ---------------------------------
+Para enviar un SMS necesitamos el permiso:
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+   + Para enviar un sms automatico solo necesitamos 2 setencias:
+
+        //Crea una instancia predeterminada de SmsManager
+        SmsManager smsManager = SmsManager.getDefault();
+
+        //Manda el mensaje, necesita los parametros:
+
+            //String: codigo del pais + numero de telefono
+            //String: direccion del centro de mensajes o dejar como null para usar el predeterminado
+            //String: texto del mensaje
+            //PendingIntent: si no es NULL, este PendingIntent se transmite cuando el mensaje se envía correctamente o falla. El código de resultado será Activity.RESULT_OK para el éxito, o uno de estos errores: RESULT_ERROR_GENERIC_FAILURE RESULT_ERROR_RADIO_OFF RESULT_ERROR_NULL_PDU. El control de SMS basado en la aplicación controla sentIntent. Si sentIntent es NULL, la persona que llama se verificará contra todas las aplicaciones desconocidas, lo que hará que se envíe un número menor de SMS en el período de comprobación.
+            //PendingIntent: si no es NULL este PendingIntent se transmite cuando el mensaje se entrega al destinatario. El raw pdu del informe de estado está en los datos extendidos ('pdu').
+
+
+        smsManager.sendTextMessage("+34612345678", null, "funciona", null, null);
+
+   + Para enviar un sms abriendo la apk predeterminada para envio de sms
+
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.putExtra("sms_body", "default content");
+            sendIntent.setType("vnd.android-dir/mms-sms");
+            startActivity(sendIntent);

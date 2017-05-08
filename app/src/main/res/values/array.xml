@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="leche">
+        <item>Leche caliente</item>
+        <item>Leche templada</item>
+        <item>Leche fría</item>
+    </string-array>
+
+    <string-array name="azucar">
+        <item>Azúcar</item>
+        <item>Azúcar Moreno</item>
+        <item>Sacarina</item>
+        <item>Sin Azúcar</item>
+    </string-array>
+</resources>

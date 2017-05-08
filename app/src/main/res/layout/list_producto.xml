@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_marginStart="8dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/ic_hot_drink"
+        android:id="@+id/ivListPedidosLogo"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:text="@string/lpp_nombre_del_cafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dt_list_nombre"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/ivListPedidosLogo"
+        app:layout_constraintTop_toTopOf="@+id/ivListPedidosLogo" />
+
+    <TextView
+        android:text="Leche caliente, Azucar moreno, Sin lactosa, Crema, Chocolate, Hielo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dt_list_comentarios"
+        app:layout_constraintBottom_toBottomOf="@+id/ivListPedidosLogo"
+        app:layout_constraintLeft_toRightOf="@+id/ivListPedidosAlert"
+        android:textSize="12sp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/ibListDelete"
+        android:layout_marginEnd="8dp" />
+
+    <ImageView
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        app:srcCompat="@drawable/ic_alert"
+        android:id="@+id/ivListPedidosAlert"
+        app:layout_constraintBottom_toBottomOf="@+id/ivListPedidosLogo"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/ivListPedidosLogo" />
+
+    <TextView
+        android:text="x20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dt_list_cantidad"
+        android:textSize="@dimen/text_size_small"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_dt_list_nombre"
+        app:layout_constraintTop_toTopOf="@+id/tv_dt_list_nombre" />
+
+    <TextView
+        android:text="12.3 €"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvListPedidosPrecio"
+        app:layout_constraintTop_toTopOf="@+id/tv_dt_list_cantidad"
+        android:textSize="18sp"
+        android:textColor="@color/accent"
+        android:textStyle="normal|bold"
+        app:layout_constraintRight_toLeftOf="@+id/ibListDelete"
+        android:layout_marginEnd="8dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_delete"
+        android:id="@+id/ibListDelete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

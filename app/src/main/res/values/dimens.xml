@@ -1,0 +1,32 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- MARGIN -->
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+
+    <dimen name="margin_general">16dp</dimen>
+    <dimen name="margin_top_logotipo">24dp</dimen>
+    <dimen name="margin_top_et_hasta_logotipo">64dp</dimen>
+    <dimen name="margin_left_iconos">24dp</dimen>
+    <dimen name="margin_start_list">8dp</dimen>
+    <dimen name="margin_16_0">@dimen/margin_general</dimen>
+
+    <!-- DIMENSIONES -->
+    <dimen name="alto_logotipo">100dp</dimen>
+    <dimen name="size_icon">24dp</dimen>
+    <dimen name="ancho_list_movil_tablet">8dp</dimen>
+    <dimen name="size_check_box">35dp</dimen>
+
+    <!-- TAMAÑO LETRA -->
+    <dimen name="text_size_normal">18sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_big">20sp</dimen>
+    <dimen name="tex_size_biggest">35sp</dimen>
+
+    <!-- ELEVATION -->
+    <dimen name="elevation_listview">3dp</dimen>
+
+    <!-- recursos -->
+    <drawable name="fondo_pedidos_mv_tb">@color/fondo_blanco</drawable>
+</resources>
