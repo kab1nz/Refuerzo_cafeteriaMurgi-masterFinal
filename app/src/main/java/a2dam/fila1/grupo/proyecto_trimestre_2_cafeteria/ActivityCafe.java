@@ -1,16 +1,14 @@
 package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,12 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
 import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.BDFinal;
@@ -57,18 +50,22 @@ public class ActivityCafe extends AppCompatActivity {
     private Button menos;
     private Button mas;
 
+
     private FloatingActionButton fab;
 
     ArrayAdapter<CharSequence> adapterLeche;    //Adapter para el spinner de la temperatura de la leche
     ArrayAdapter<CharSequence> adapterAzucar;   //Adapter para el spinner del tipo de azucar
-    ArrayAdapter<String> adapterTipo;           //Adapter para el spinner de tipos de cafe
+    ArrayAdapter adapterTipo;           //Adapter para el spinner de tipos de cafe
 
 
     static ArrayList<String> arrayTipo = new ArrayList<>();
-
+    static float precioCafeFinal;
     static boolean datos = false;
     static boolean leche = false;
-
+    static String datosPedido;
+    static int id;
+    static String nombre;
+    static int cant;
     static float precioCafe = 0f;//Precio cafe
 
     @Override
@@ -83,6 +80,8 @@ public class ActivityCafe extends AppCompatActivity {
         }
 
         inflar();
+        listenerBotones();
+        inflarSpinnerTipoCafe();
     }//Fin onCreate
 
     /**
@@ -91,22 +90,9 @@ public class ActivityCafe extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        BDFinal.productosFinal.clear();
         arrayTipo.clear();
         datos = false;
-        init();
-    }
 
-
-
-    /**
-     * Llama a los metodos para cargar la bbdd e inicializa los datos
-     */
-    private void init(){
-        lanzarDialogo("Cargando BBDD...");
-        new ConsultasCafe("Select * from productos order by nom_pro", dialogo).execute();
-        listenerBotones();
-        llevaLeche(leche);
     }
 
     /**
@@ -146,16 +132,19 @@ public class ActivityCafe extends AppCompatActivity {
         adapterLeche = ArrayAdapter.createFromResource(this, R.array.leche , android.R.layout.simple_spinner_dropdown_item);
         adapterAzucar= ArrayAdapter.createFromResource(this, R.array.azucar, android.R.layout.simple_spinner_dropdown_item);
 
-        adapterTipo  = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipo);
+        adapterTipo  = ArrayAdapter.createFromResource(this, R.array.productos, android.R.layout.simple_spinner_dropdown_item);
+        adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spLeche .setAdapter(adapterLeche);
         spAzucar.setAdapter(adapterAzucar);
+        spTipo.setAdapter(adapterTipo);
 
     }//Fin inflar
 
     /**
      * Captura la acción de pulsar el botón atrás y vuelve a la pantalla de login, borrando los pedidos guardados
      */
+    /*
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -171,27 +160,69 @@ public class ActivityCafe extends AppCompatActivity {
                     }
                 }).create().show();
     }
+    */
+
 
     /**
      * Métodos de los spinner
      */
     private void inflarSpinnerTipoCafe() {
         lanzarDialogo("Calculando precios...");
-        spTipo.setAdapter(adapterTipo);
+
 
         //Al seleccionar un tipo de cafe accedemos a la bbdd para consultar su precio y la posibilidad de acompañar con leche
         spTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                     switch (position){
-                        case 0: precioCafe =0;
+                        case 0:
+                            Toast.makeText(parent.getContext(), "Hola de prueba", Toast.LENGTH_LONG).show();
+
+
+                                precioCafe =0;
                                 setPrecio();
                                 llevaLeche(false);
                                 dialogo.dismiss();
+
+
                             break;
+
+                        case 1:
+                            String a;
+                            precioCafe =10;
+                            a=setPrecio();
+                            id=1;
+                            nombre="cortado";
+                            llevaLeche(true);
+                            datosPedido=datosPedido+"Cortado +"+a;
+                            //comprobar el arraylist producto
+                        //    Producto producto = BDFinal.productosFinal.get(spTipo.getSelectedItemPosition()-1);
+
+                            break;
+                        case 2:
+                            precioCafe =20;
+                            setPrecio();
+                            llevaLeche(true);
+
+                            break;
+
+                        case 3:
+                            precioCafe =30;
+                            setPrecio();
+                            llevaLeche(true);
+
+                            break;
+
+                        case 4:
+                            precioCafe =40;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
+
+
                         default: dialogo.show();
-                            new ConsultasCafe("Select precio, leche from productos where nom_pro = '"
-                                    + parent.getSelectedItem().toString().trim() + "'", dialogo).execute();
+
                     }
                 }
             @Override
@@ -243,22 +274,19 @@ public class ActivityCafe extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (spTipo.getSelectedItemPosition() != 0){
-                    Producto producto = BDFinal.productosFinal.get(spTipo.getSelectedItemPosition()-1);
-                    String comentarios = generarComentarios();
+                    precioCafeFinal=Float.parseFloat(setPrecio());
+                    Producto producto = new Producto(id,nombre,precioCafeFinal,leche);
+                    Pedido pedido = new Pedido(producto,cant+1,precioCafeFinal, generarComentarios());
+                    BDFinal.pedidosFinal.add(pedido);
+                    Toast.makeText(getApplicationContext(),"Añadido a la cesta",Toast.LENGTH_SHORT).show();
 
-                    BDFinal.pedidosFinal.add(new Pedido(ActivityLogin.USER, producto,
-                            Integer.parseInt(cantidad.getText().toString().trim()),
-                            Float.parseFloat(precio.getText().toString().trim()),comentarios, "14:45"));
-
-                    Toast.makeText(getApplicationContext(),"Café "+producto.getNombre()+" añadido a tus pedidos",Toast.LENGTH_SHORT).show();
                     limpiar();
                 }else
                     Toast.makeText(getApplicationContext(),"Debe seleccionar un TIPO de café",Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        pedir.setOnClickListener(new View.OnClickListener() {
+ pedir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//Lanza la activity detalles para conocer el resumen del pedido
                 if (BDFinal.pedidosFinal.size() == 0){
@@ -286,7 +314,7 @@ public class ActivityCafe extends AppCompatActivity {
         hielo       .setChecked(false);
         cantidad    .setText(""+1);
 
-        setPrecio();
+        //setPrecio();
     }//Fin limpiar
 
     /**
@@ -316,7 +344,7 @@ public class ActivityCafe extends AppCompatActivity {
      * @param i Cantidad a sumar o restar a la cantidad actual
      */
     private void setCantidad(int i) {
-        int cant = Integer.parseInt(cantidad.getText().toString().trim());
+        cant = Integer.parseInt(cantidad.getText().toString().trim());
         if ((cant + i) < 1 || (cant + i) > 20 )
             Toast.makeText(getApplicationContext(), "Cantidad mínima 1, catidad máxima 20", Toast.LENGTH_SHORT).show();
         else
@@ -329,7 +357,10 @@ public class ActivityCafe extends AppCompatActivity {
      * setPrecio, calcula el precio del pedido según el producto y las opciones seleccionadas
      * Redondea para que salga sólo con 2 decimales máximo
      */
-    private void setPrecio(){
+
+
+    private String setPrecio(){
+        String d;
         float precioFinal = precioCafe;
         if (leche)
             if (lactosa.isChecked())
@@ -343,8 +374,8 @@ public class ActivityCafe extends AppCompatActivity {
 
         precioFinal = precioFinal * Integer.parseInt(cantidad.getText().toString().trim());
         double redondeo = Math.round(precioFinal*100.0)/100.0;
-
         precio.setText(""+redondeo);
+        return  d= String.valueOf(redondeo);
     }//Fin setPrecio
 
     /**
@@ -365,73 +396,4 @@ public class ActivityCafe extends AppCompatActivity {
     }//Fin metodosCheked
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public class ConsultasCafe extends AsyncTask<Void,Void,ResultSet> {
-
-        String consultaCf;
-        Connection conexCf;
-        Statement sentenciaCf;
-        android.app.AlertDialog dialog;
-        ResultSet resultCf;
-
-        public ConsultasCafe(String consulta, android.app.AlertDialog dialog){
-            this.consultaCf=consulta;
-            this.dialog=dialog;
-        }
-
-        @Override
-        protected ResultSet doInBackground(Void... params) {
-
-            try {
-                conexCf     = DriverManager.getConnection("jdbc:mysql://" + ActivityLogin.ip + "/base20171",
-                        "ubase20171", "pbase20171");
-                sentenciaCf = conexCf.createStatement();
-                resultCf    = null;
-                publishProgress();
-                resultCf    = sentenciaCf.executeQuery(consultaCf);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return resultCf;
-        }
-
-        @Override
-        protected void onPostExecute(ResultSet resultSet) {
-            super.onPostExecute(resultSet);
-
-            try{
-                while (resultSet.next()) {
-                    if (!datos){
-                        if (arrayTipo.size() == 0)
-                            arrayTipo.add("");
-
-                        BDFinal.productosFinal.add(new Producto(resultSet.getInt(1),resultSet.getString(2),resultSet.getFloat(3), resultSet.getBoolean(4)));
-                        arrayTipo.add(resultSet.getString(2));
-                    }
-
-                    if (consultaCf.contains("precio")){
-                        precioCafe=resultSet.getFloat(1);
-                        leche=resultSet.getBoolean(2);
-                        llevaLeche(leche);
-                        setPrecio();
-                    }
-                }
-                if (!datos){
-
-                    inflarSpinnerTipoCafe();
-                    limpiar();
-                    datos = true;
-                }
-
-                conexCf.close();
-                sentenciaCf.close();
-                resultCf.close();
-                dialog.dismiss();
-
-            } catch (Exception ex) {
-                Log.d("ERROR",""+ex.getMessage());
-            }
-        }
-    }//Fin AsynTack
 }//Fin Acticity

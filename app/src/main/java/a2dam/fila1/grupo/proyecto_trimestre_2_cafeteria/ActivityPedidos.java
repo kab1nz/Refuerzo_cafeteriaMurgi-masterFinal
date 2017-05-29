@@ -1,29 +1,14 @@
 package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.BDFinal;
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Pedido;
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Producto;
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Usuario;
 import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.VistaPedido;
 import dmax.dialog.SpotsDialog;
 
@@ -32,7 +17,7 @@ public class ActivityPedidos extends AppCompatActivity {
     AlertDialog dialogo;
     private ListView listView;
 
-    ActualizacionPedidos actualizacionPedidos;
+    //ActualizacionPedidos actualizacionPedidos;
 
 
     ArrayList<VistaPedido> vistaPedidos = new ArrayList<>();
@@ -61,11 +46,13 @@ public class ActivityPedidos extends AppCompatActivity {
 
             vistaPedidos.clear();
 
+            /*
             String consulta = "select username, hora, sum(precio) as total, estado from pedidos, usuarios " +
                     "where id_cli = idCliente group by username, hora order by hora, num_pedido, username, estado, total";
             new ConsultasPedidos(consulta, dialogo).execute();
             actualizacionPedidos = new ActualizacionPedidos();
             actualizacionPedidos.execute();
+            */
     }
 
     /**
@@ -74,14 +61,15 @@ public class ActivityPedidos extends AppCompatActivity {
     private void lanzarAdapter() {
         listView = (ListView) findViewById(R.id.lvAPedidos);
         listView.setAdapter(new AdapterPedidos(vistaPedidos));
-        itemListener();
+        //itemListener();
     }//Fin lanzarAdapter
-
+/*
     private void itemListener(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dialogo.show();
+
                 String consulta = "select nom_pro, complementos, cantidad, pedidos.precio, idCliente, " +
                         "username, hora, email from usuarios, pedidos, productos " +
                         "where usuarios.id_cli = pedidos.idCliente " +
@@ -111,13 +99,13 @@ public class ActivityPedidos extends AppCompatActivity {
             }
         });
     }//Fin itemlistener
-
+*/
     /**
      * Lanza ActivityDetalles con todos los productos del pedido
      * @param usuario
      * @param hora
      */
-    private void lanzarDetalles(String usuario, int idCli, String hora) {
+  /*  private void lanzarDetalles(String usuario, int idCli, String hora) {
         actualizacionPedidos.cancel(true);
         dialogo.show();
         String update = "update pedidos set estado = 1 where idCliente = " + idCli +
@@ -133,17 +121,21 @@ public class ActivityPedidos extends AppCompatActivity {
      * @param usuario
      * @param hora
      */
+
+  /*
     public void borrarPedido(String usuario, String hora){
         String delete = "delete from pedidos where idCliente = (Select id_cli " +
                 "from usuarios where username = '" + usuario + "') " +
                 "and hora = '" + hora + "'";
         new ConsultasPedidos(delete, dialogo).execute();
     }
-
+*/
     /**
      * Captura la acción de pulsar el botón atrás y vuelve a la pantalla de login
      */
+    /*
     @Override
+
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Cerrar Sesión")
@@ -159,9 +151,9 @@ public class ActivityPedidos extends AppCompatActivity {
                     }
                 }).create().show();
     }//Fin onBackPressed
-
+    */
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
     public class ConsultasPedidos extends AsyncTask<Void,Void,ResultSet> {
 
         android.app.AlertDialog dialog;
@@ -243,14 +235,14 @@ public class ActivityPedidos extends AppCompatActivity {
             }catch (Exception ex) { Log.d("Fallo de cojones",""); }
         }
     }//Fin AsynTack
-
+*/
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     /**
      *  ///////////////////////////////////////////////////////////////////////////////////////////
      */
     ///////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
     public class ActualizacionPedidos extends AsyncTask<Void,Void,Void> {
 
         public ActualizacionPedidos(){  }
@@ -275,5 +267,5 @@ public class ActivityPedidos extends AppCompatActivity {
             dialogo.dismiss();
         }
     }//Fin AsynTack
-
+*/
 }//Fin Activity

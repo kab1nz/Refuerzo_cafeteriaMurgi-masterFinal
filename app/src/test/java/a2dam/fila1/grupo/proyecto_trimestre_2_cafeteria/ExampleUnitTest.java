@@ -1,8 +1,11 @@
 package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
-import org.junit.Test;
+//import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.testng.annotations.Test;
+
+import static junit.framework.Assert.assertEquals;
+//import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

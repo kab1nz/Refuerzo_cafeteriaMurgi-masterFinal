@@ -1,13 +1,13 @@
 package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,12 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.BDFinal;
 import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Pedido;
@@ -50,7 +44,7 @@ public class ActivityDetalles extends AppCompatActivity {
 
         inflar();
 
-        lanzarAdapter();
+        lanzarAdapter(this);
         listenerBotones();
 
     }
@@ -69,8 +63,8 @@ public class ActivityDetalles extends AppCompatActivity {
     /**
      * lanzarAdapter, crea y lanza un adapter en el listView con una lista de los productos del pedido
      */
-    static void lanzarAdapter() {
-        AdapterDetalles adapta = new AdapterDetalles(BDFinal.pedidosFinal);
+    static void lanzarAdapter(Activity activity) {
+        AdapterDetalles adapta = new AdapterDetalles(activity, BDFinal.pedidosFinal);
         listaProcductos.setAdapter(adapta);
         precioTotal();
     }
@@ -130,13 +124,9 @@ public class ActivityDetalles extends AppCompatActivity {
                     for (Pedido p : BDFinal.pedidosFinal){
                         dialogo.show();
 
-                        String insert = "insert into pedidos (idProducto, idCliente, complementos, hora, cantidad, precio, estado) "
-                                + "values (" + p.getProducto().getNumProducto() + ","
-                                + ActivityLogin.USER.getId() + ", '" + p.getComentarios() + "', "
-                                + "'" + hora + "', " + p.getCantidad() + ", "
-                                + p.getPrecio() + ", " + 0 + ");";
 
-                        new Insertar(insert, dialogo).execute();
+
+                       // new Insertar(insert, dialogo).execute();
                     }
                 }
             }
@@ -155,7 +145,7 @@ public class ActivityDetalles extends AppCompatActivity {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
     public class Insertar extends AsyncTask<Void,Void,ResultSet> {
 
         String consultaDt;
@@ -207,4 +197,6 @@ public class ActivityDetalles extends AppCompatActivity {
             dialog.dismiss();
         }
     }//Fin AsynTack
+    */
 }//Fin Activity
+

@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         ini = false;
 
         //No modificar ni cambiar la posicion del siguiente metodo
-        cargarDriverJDBC();
+        //cargarDriverJDBC();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         if (!ini){
             ini = true;
-            Intent i = new Intent(getApplicationContext(),ActivityLogin.class);
+            Intent i = new Intent(getApplicationContext(),ActivityCafe.class);
             startActivity(i);
         }else
             finish();

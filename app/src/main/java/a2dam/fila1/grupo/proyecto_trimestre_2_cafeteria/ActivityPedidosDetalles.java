@@ -1,24 +1,7 @@
 package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
-import android.app.AlertDialog;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.os.AsyncTask;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.BDFinal;
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Pedido;
-import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Email.SendMail;
-import dmax.dialog.SpotsDialog;
-
+//import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Email.SendMail;
+/*
 public class ActivityPedidosDetalles extends AppCompatActivity {
     AlertDialog dialogo;
     private static boolean mail = false;
@@ -79,7 +62,7 @@ public class ActivityPedidosDetalles extends AppCompatActivity {
                             + " con un precio total de " + precioT.getText(), null, null);
 
 
-                 */
+
                 if (!mail){
                     String message = "Pedido preparado para las " + BDFinal.pedidosFinal.get(0).getHora()
                             + " con un precio total de " + precioT.getText();
@@ -159,3 +142,4 @@ public class ActivityPedidosDetalles extends AppCompatActivity {
         }
     }//Fin AsynTack
 }//Fin Activity
+*/

@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityPedidos" />
-        <activity android:name=".ActivityPedidosDetalles" />
+
         <activity android:name=".ActivityLogin" />
         <activity android:name=".ActivityCafe" />
         <activity android:name=".ActivityDetalles" />
