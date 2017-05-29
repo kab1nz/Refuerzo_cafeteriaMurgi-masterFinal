@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         ini = false;
 
         //No modificar ni cambiar la posicion del siguiente metodo
-        //cargarDriverJDBC();
+        cargarDriverJDBC();
     }
 
     @Override

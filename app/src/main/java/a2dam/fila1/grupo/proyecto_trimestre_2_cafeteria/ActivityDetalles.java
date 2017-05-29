@@ -2,6 +2,7 @@ package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -29,6 +30,8 @@ public class ActivityDetalles extends AppCompatActivity {
     private ImageButton volver;
     private Button confirmar;
     private TimePicker reloj;
+
+    static boolean sesion=false;
 
 
     @Override
@@ -103,30 +106,36 @@ public class ActivityDetalles extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                int hour = 0;
-                int minute = 0;
 
-                //Detecta la API que se esta ejecutando, si es menor que 23 se usan metodos deprecated para obtener la hora actual
-                if (Build.VERSION.SDK_INT >= 23 ){
-                    hour = reloj.getHour();
-                    minute = reloj.getMinute();
-                }else{
-                    hour = reloj.getCurrentHour();
-                    minute = reloj.getCurrentMinute();
-                }
-                int hora = hour * 10000 + minute * 100;
+                if(sesion==false){
+                    Intent i = new Intent(getApplicationContext(), ActivityLogin.class);
+                    startActivity(i);
 
-                if (BDFinal.pedidosFinal.size()==0)
-                    Toast.makeText(getApplicationContext(),"No se han añadido productos.", Toast.LENGTH_SHORT).show();
-                else if (!comprobarHora(hora)){
-                    Toast.makeText(getApplicationContext(),"Hora incorrecta. Horario 8:15-14:45.", Toast.LENGTH_SHORT).show();
                 }else {
-                    for (Pedido p : BDFinal.pedidosFinal){
-                        dialogo.show();
+                    int hour = 0;
+                    int minute = 0;
+
+                    //Detecta la API que se esta ejecutando, si es menor que 23 se usan metodos deprecated para obtener la hora actual
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        hour = reloj.getHour();
+                        minute = reloj.getMinute();
+                    } else {
+                        hour = reloj.getCurrentHour();
+                        minute = reloj.getCurrentMinute();
+                    }
+                    int hora = hour * 10000 + minute * 100;
+
+                    if (BDFinal.pedidosFinal.size() == 0)
+                        Toast.makeText(getApplicationContext(), "No se han añadido productos.", Toast.LENGTH_SHORT).show();
+                    else if (!comprobarHora(hora)) {
+                        Toast.makeText(getApplicationContext(), "Hora incorrecta. Horario 8:15-14:45.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for (Pedido p : BDFinal.pedidosFinal) {
+                            dialogo.show();
 
 
-
-                       // new Insertar(insert, dialogo).execute();
+                            // new Insertar(insert, dialogo).execute();
+                        }
                     }
                 }
             }
