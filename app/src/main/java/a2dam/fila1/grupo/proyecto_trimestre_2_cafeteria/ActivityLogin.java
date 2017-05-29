@@ -153,14 +153,14 @@ public class ActivityLogin extends AppCompatActivity {
             case 1: Intent i1 = new Intent(getApplicationContext(), ActivityPedidos.class);
                 startActivity(i1);
                 break;
-            case 2: Intent i2 = new Intent(getApplicationContext(), ActivityCafe.class);
+            case 2: Intent i2 = new Intent(getApplicationContext(), ActivityDetalles.class);
                 startActivity(i2);
                 break;
-            case 3: Intent i3 = new Intent(getApplicationContext(), ActivityCafe.class);
+            case 3: Intent i3 = new Intent(getApplicationContext(), ActivityDetalles.class);
                 startActivity(i3);
                 break;
 
-             case 4: Intent i4 = new Intent(getApplicationContext(), ActivityCafe.class);
+             case 4: Intent i4 = new Intent(getApplicationContext(), ActivityDetalles.class);
                  startActivity(i4);
                  break;
             default:
@@ -225,9 +225,10 @@ public class ActivityLogin extends AppCompatActivity {
 
                 if (USER==null)
                     Toast.makeText(getApplicationContext(), "Usuario o Contraseña incorrectos",Toast.LENGTH_SHORT).show();
-                else
+                else {
+                    ActivityDetalles.sesion=true;
                     lanzarActivity();
-
+                }
             }catch (Exception ex) {     Log.d("Error",""+ex.getMessage());   }
         }
     }//Fin AsynTack
