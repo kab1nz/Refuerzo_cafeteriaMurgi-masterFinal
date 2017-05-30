@@ -14,10 +14,22 @@
     </string-array>
 
     <string-array name="productos">
+
         <item></item>
         <item>Cortado</item>
         <item>Con Leche</item>
         <item>Manchado</item>
+        <item>Solo</item>
         <item>Bombon</item>
+        <item>Des. sobre</item>
+        <item>Des. máquina</item>
+        <item>Colacao</item>
+        <item>Infusión manz.</item>
+        <item>Infusión Menta-Poleo</item>
+        <item>Infusión Tila</item>
+        <item>Infusión Té Rojo</item>
+        <item>Infusión Té Verde</item>
+        <item>Infusión Té</item>
+
     </string-array>
 </resources>

@@ -189,38 +189,102 @@ public class ActivityCafe extends AppCompatActivity {
                             break;
 
                         case 1:
-                            String a;
-                            precioCafe =10;
-                            a=setPrecio();
-                            id=1;
+                            precioCafe =0.90f;
                             nombre="cortado";
                             llevaLeche(true);
-                            datosPedido=datosPedido+"Cortado +"+a;
-                            //comprobar el arraylist producto
-                        //    Producto producto = BDFinal.productosFinal.get(spTipo.getSelectedItemPosition()-1);
+                            setPrecio();
 
                             break;
                         case 2:
-                            precioCafe =20;
+                            nombre="con leche";
+                            precioCafe =0.90f;
                             setPrecio();
                             llevaLeche(true);
 
                             break;
 
                         case 3:
-                            precioCafe =30;
+                            nombre="Manchada";
+                            precioCafe =0.90f;
                             setPrecio();
                             llevaLeche(true);
 
                             break;
 
                         case 4:
-                            precioCafe =40;
+                            nombre="Solo";
+                            precioCafe =0.90f;
                             setPrecio();
                             llevaLeche(false);
                             break;
 
+                        case 5:
+                            nombre="Bombón";
+                            precioCafe =1;
+                            setPrecio();
+                            llevaLeche(false);
 
+                        case 6:
+                            nombre="Des. sobre";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(true);
+                            break;
+
+                        case 7:
+                            nombre="Des. máquina";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(true);
+                            break;
+
+                        case 8:
+                            nombre="Colacao";
+                            precioCafe =1;
+                            setPrecio();
+                            llevaLeche(true);
+                            break;
+
+                        case 9:
+                            nombre="Infusión manz.";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
+
+                        case 10:
+                            nombre="Infusión Menta-Poleo";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
+
+                        case 11:
+                            nombre="Infusión Tila";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
+
+                        case 12:
+                            nombre="Infusión Té Rojo";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
+
+                        case 13:
+                            nombre="Insusión Té Verde";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
+                        case 14:
+                            nombre="Infusión Té";
+                            precioCafe =0.90f;
+                            setPrecio();
+                            llevaLeche(false);
+                            break;
                         default: dialogo.show();
 
                     }
