@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -18,13 +19,15 @@ import dmax.dialog.SpotsDialog;
 
 public class ActivityRegistrarUsuario extends AppCompatActivity {
     static int n=5;
-
+    static boolean control=true;
+    static String nick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_usuario);
         final AlertDialog dialogo;
         int result=0;
+
 
         final EditText etNombre,etContra,etMail,etTele;
         Button btn_registrar;
@@ -33,27 +36,63 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         etMail=(EditText)findViewById(R.id.et_reg_email);
         dialogo  = new SpotsDialog(this,"Insertando cliente...");
 
+
         etTele=(EditText)findViewById(R.id.et_reg_phone);
         btn_registrar=(Button)findViewById(R.id.btn_registrar);
         btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogo.show();
+
                 String nombre=etNombre.getText().toString();
                 String contra = etContra.getText().toString();
                 String mail = etMail.getText().toString();
                 String tel = etTele.getText().toString();
 
-                String insert = "INSERT INTO usuarios (username, pass, telefono, email, categoria) "
-                        + "VALUES ('"+nombre + "', '" + contra + "', "
-                        + "'" + tel + "', '" + mail + "', "
-                        + 3 + ");";
+                nick=nombre;
 
-                new registrarUsuario(insert,dialogo).execute();
-                n++;
+                //comprobarRegistro(nick);
+
+                if(control){
+                    dialogo.show();
+                    String insert = "INSERT INTO usuarios (username, pass, telefono, email, categoria) "
+                            + "VALUES ('"+nombre + "', '" + contra + "', "
+                            + "'" + tel + "', '" + mail + "', "
+                            + 3 + ");";
+
+                    new registrarUsuario(insert,dialogo).execute();
+                    n++;
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "El usuario introducido ya existe, inserte otro distinto", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
+
+    public void comprobarRegistro(String nombre){
+        try(
+               Connection conexDt = (Connection) DriverManager.getConnection("jdbc:mysql://" + ActivityLogin.ip + "/base20171", "ubase20171", "pbase20171");
+               Statement sentenciaDt = (Statement) conexDt.createStatement();
+                ){
+            control=true;
+            ResultSet resul=null;
+            String sql ="SELECT username from usuarios";
+            resul=sentenciaDt.executeQuery(sql);
+
+            while(resul.next()){
+                System.out.println("ESTA en el while");
+                if(nombre.equalsIgnoreCase(resul.getString(2))){
+                    System.out.println("entro en el if");
+                    control= false;
+                }
+            }
+
+            System.out.println("salio del while");
+        }catch(Exception ex){System.err.println("Error -> "+ex.getMessage());}
+    }
+
+
     public class registrarUsuario extends AsyncTask<Object, Object, Integer> {
 
         String consultaDt;
@@ -66,6 +105,9 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             this.dialog=dialog;
         }
 
+
+
+
         @Override
         protected Integer doInBackground(Object... params) {
             int result=0;
@@ -77,6 +119,8 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 if (consultaDt.startsWith("INSERT")) {
                     result=sentenciaDt.executeUpdate(consultaDt);
                 }
+
+
 
             } catch (SQLException e) {
                 //Toast.makeText(getApplicationContext(),"Usuario No se pudo insertar.", Toast.LENGTH_LONG).show();

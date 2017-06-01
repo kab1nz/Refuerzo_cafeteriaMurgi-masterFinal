@@ -177,7 +177,7 @@ public class ActivityCafe extends AppCompatActivity {
 
                     switch (position){
                         case 0:
-                            Toast.makeText(parent.getContext(), "Hola de prueba", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(parent.getContext(), "Hola de prueba", Toast.LENGTH_LONG).show();
 
 
                                 precioCafe =0;
