@@ -194,6 +194,7 @@ public class ActivityLogin extends AppCompatActivity {
                 conexLg = DriverManager.getConnection("jdbc:mysql://" + ip + "/base20171", "ubase20171", "pbase20171");
                 sentenciaLg = conexLg.createStatement();
                 resultLg = null;
+                ActivityDetalles.sesion=true;
                 publishProgress();
 
                 resultLg = sentenciaLg.executeQuery(consultaLg);

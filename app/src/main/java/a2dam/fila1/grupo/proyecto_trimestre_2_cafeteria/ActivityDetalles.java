@@ -114,7 +114,7 @@ public class ActivityDetalles extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(sesion==false){
+                if(!sesion){
                     Intent i = new Intent(getApplicationContext(), ActivityLogin.class);
                     startActivity(i);
 
