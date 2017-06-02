@@ -23,7 +23,7 @@ import javax.mail.internet.MimeMessage;
 //import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.AdapterPedidos;
 //import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.AdapterPedidosDetalles;
 
-/*
+
 //Necesitamos un hilo para usar conexion a internet
 public class SendMail extends AsyncTask<Void,Void,Void> {
 
@@ -108,4 +108,3 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         return null;
     }
 }
-*/

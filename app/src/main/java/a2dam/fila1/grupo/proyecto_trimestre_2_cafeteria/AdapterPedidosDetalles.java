@@ -1,9 +1,19 @@
 package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Pedido;
+
 /**
  * Created by Raquel.
  */
-/*
+
 public class AdapterPedidosDetalles extends BaseAdapter {
     ArrayList<Pedido> pedido ;
     private View listItemView;
@@ -48,4 +58,3 @@ public class AdapterPedidosDetalles extends BaseAdapter {
         return listItemView;
     }
 }
-*/

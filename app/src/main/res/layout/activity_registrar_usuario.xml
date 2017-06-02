@@ -182,15 +182,4 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_help"
-        android:id="@+id/ibtn_lg_ayuda"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/margin_general"
-        android:layout_marginEnd="@dimen/margin_general"
-        app:layout_constraintRight_toRightOf="parent" />
-
 </RelativeLayout>

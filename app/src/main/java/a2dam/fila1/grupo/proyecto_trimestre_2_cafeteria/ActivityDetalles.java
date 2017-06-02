@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -16,6 +17,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.BDFinal;
 import a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria.Bd.Pedido;
@@ -130,11 +137,22 @@ public class ActivityDetalles extends AppCompatActivity {
                     else if (!comprobarHora(hora)) {
                         Toast.makeText(getApplicationContext(), "Hora incorrecta. Horario 8:15-14:45.", Toast.LENGTH_SHORT).show();
                     } else {
+                        Toast.makeText(getApplicationContext(), "Entra en el foorrrrr", Toast.LENGTH_SHORT).show();
                         for (Pedido p : BDFinal.pedidosFinal) {
                             dialogo.show();
+                            String insert = "insert into pedidos (idProducto, idCliente, complementos, hora, cantidad, precio, estado) "
 
+                                    + "values (" + p.getProducto().getNumProducto() + ","
 
-                            // new Insertar(insert, dialogo).execute();
+                                    + ActivityLogin.USER.getId() + ", '" + p.getComentarios() + "', "
+
+                                    + "'" + hora + "', " + p.getCantidad() + ", "
+
+                                    + p.getPrecio() + ", " + 0 + ");";
+
+                            Toast.makeText(getApplicationContext(),"Insertado realizado con exito.", Toast.LENGTH_LONG).show();
+
+                            new Insertar(insert, dialogo).execute();
                         }
                     }
                 }
@@ -154,7 +172,7 @@ public class ActivityDetalles extends AppCompatActivity {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-/*
+
     public class Insertar extends AsyncTask<Void,Void,ResultSet> {
 
         String consultaDt;
@@ -178,8 +196,9 @@ public class ActivityDetalles extends AppCompatActivity {
                 if (consultaDt.startsWith("insert"))
                     sentenciaDt.executeUpdate(consultaDt);
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException a) {
+                a.printStackTrace();
+
             }
             return null;
         }
@@ -206,6 +225,6 @@ public class ActivityDetalles extends AppCompatActivity {
             dialog.dismiss();
         }
     }//Fin AsynTack
-    */
+
 }//Fin Activity
 
