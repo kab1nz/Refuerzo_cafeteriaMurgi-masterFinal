@@ -252,6 +252,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         android:layout_marginBottom="@dimen/margin_general" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_coffee_cup"
+        android:id="@+id/fab_sesion"
+        android:scaleType="center"
+        android:layout_marginEnd="@dimen/margin_general"
+        app:layout_constraintLeft_toLeftOf=""
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        android:layout_marginBottom="15dp" />
+
 
 
 </android.support.constraint.ConstraintLayout>

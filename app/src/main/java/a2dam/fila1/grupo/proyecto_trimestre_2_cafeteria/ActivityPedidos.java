@@ -148,7 +148,7 @@ public class ActivityPedidos extends AppCompatActivity {
     /**
      * Captura la acción de pulsar el botón atrás y vuelve a la pantalla de login
      */
-    /*
+
     @Override
 
     public void onBackPressed() {
@@ -166,7 +166,7 @@ public class ActivityPedidos extends AppCompatActivity {
                     }
                 }).create().show();
     }//Fin onBackPressed
-    */
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

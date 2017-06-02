@@ -52,6 +52,7 @@ public class ActivityCafe extends AppCompatActivity {
 
 
     private FloatingActionButton fab;
+    private FloatingActionButton fab_sesion;
 
     ArrayAdapter<CharSequence> adapterLeche;    //Adapter para el spinner de la temperatura de la leche
     ArrayAdapter<CharSequence> adapterAzucar;   //Adapter para el spinner del tipo de azucar
@@ -128,6 +129,7 @@ public class ActivityCafe extends AppCompatActivity {
         mas          = (Button)      findViewById(R.id.btn_cnt_mas);
 
         fab          = (FloatingActionButton) findViewById(R.id.fab_cf);
+        fab_sesion          = (FloatingActionButton) findViewById(R.id.fab_sesion);
 
         adapterLeche = ArrayAdapter.createFromResource(this, R.array.leche , android.R.layout.simple_spinner_dropdown_item);
         adapterAzucar= ArrayAdapter.createFromResource(this, R.array.azucar, android.R.layout.simple_spinner_dropdown_item);
@@ -350,7 +352,15 @@ public class ActivityCafe extends AppCompatActivity {
             }
         });
 
- pedir.setOnClickListener(new View.OnClickListener() {
+        fab_sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(getApplicationContext(), ActivityLogin.class);
+                startActivity(myintent);
+            }
+        });
+
+        pedir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//Lanza la activity detalles para conocer el resumen del pedido
                 if (BDFinal.pedidosFinal.size() == 0){

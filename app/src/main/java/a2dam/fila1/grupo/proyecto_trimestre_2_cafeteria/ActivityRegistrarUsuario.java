@@ -20,7 +20,8 @@ import dmax.dialog.SpotsDialog;
 public class ActivityRegistrarUsuario extends AppCompatActivity {
     static int n=5;
     static boolean control=true;
-    static String nick;
+    static ResultSet comprobacion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         etNombre =(EditText)findViewById(R.id.et_reg_usuario);
         etContra =(EditText)findViewById(R.id.et_reg_pass);
         etMail=(EditText)findViewById(R.id.et_reg_email);
+
         dialogo  = new SpotsDialog(this,"Insertando cliente...");
 
 
@@ -48,9 +50,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 String mail = etMail.getText().toString();
                 String tel = etTele.getText().toString();
 
-                nick=nombre;
-
-                //comprobarRegistro(nick);
+                comprobarRegistro(nombre);
 
                 if(control){
                     dialogo.show();
@@ -78,9 +78,11 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             control=true;
             ResultSet resul=null;
             String sql ="SELECT username from usuarios";
-            resul=sentenciaDt.executeQuery(sql);
+            new registrarUsuario(sql);
 
-            while(resul.next()){
+
+
+            while(comprobacion.next()){
                 System.out.println("ESTA en el while");
                 if(nombre.equalsIgnoreCase(resul.getString(2))){
                     System.out.println("entro en el if");
@@ -92,7 +94,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         }catch(Exception ex){System.err.println("Error -> "+ex.getMessage());}
     }
 
-
+//--------------------------------------------------------------------------------------------------
     public class registrarUsuario extends AsyncTask<Object, Object, Integer> {
 
         String consultaDt;
@@ -105,8 +107,9 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             this.dialog=dialog;
         }
 
-
-
+        public registrarUsuario(String consultaDt) {
+            this.consultaDt = consultaDt;
+        }
 
         @Override
         protected Integer doInBackground(Object... params) {
@@ -115,6 +118,11 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 conexDt = DriverManager.getConnection("jdbc:mysql://" + ActivityLogin.ip + "/base20171", "ubase20171", "pbase20171");
                 sentenciaDt = conexDt.createStatement();
                 publishProgress();
+
+                if (consultaDt.startsWith("SELECT")) {
+                    comprobacion =sentenciaDt.executeQuery(consultaDt);
+
+                }
 
                 if (consultaDt.startsWith("INSERT")) {
                     result=sentenciaDt.executeUpdate(consultaDt);
