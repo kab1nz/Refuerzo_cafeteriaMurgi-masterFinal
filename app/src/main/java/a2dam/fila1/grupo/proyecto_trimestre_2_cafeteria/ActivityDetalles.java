@@ -141,7 +141,7 @@ public class ActivityDetalles extends AppCompatActivity {
                             dialogo.show();
                             String insert = "insert into pedidos (num_pedido, idProducto, idCliente, complementos, hora, cantidad, precio, estado) "
 
-                                    + "values ("+300+" , "+ p.getProducto().getNumProducto() + ","
+                                    + "values ("+ p.getProducto().getNumProducto() + ","
 
                                     + ActivityLogin.USER.getId() + ", '" + p.getComentarios() + "', "
 
