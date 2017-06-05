@@ -53,7 +53,6 @@ public class ActivityDetalles extends AppCompatActivity {
         }
 
         inflar();
-
         lanzarAdapter(this);
         listenerBotones();
 

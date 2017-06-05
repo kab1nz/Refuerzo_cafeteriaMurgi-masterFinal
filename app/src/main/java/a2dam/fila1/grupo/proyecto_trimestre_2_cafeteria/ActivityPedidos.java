@@ -161,8 +161,6 @@ public class ActivityPedidos extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
                         actualizacionPedidos.cancel(true);
                         finish();
-//                        Intent i = new Intent(getApplicationContext(), ActivityLogin.class);
-//                        startActivity(i);
                     }
                 }).create().show();
     }//Fin onBackPressed

@@ -20,7 +20,6 @@ import dmax.dialog.SpotsDialog;
 public class ActivityRegistrarUsuario extends AppCompatActivity {
     static int n=5;
     static boolean control=true;
-    static ResultSet comprobacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 String mail = etMail.getText().toString();
                 String tel = etTele.getText().toString();
 
-                //comprobarRegistro(nombre);
+
 
                 if(control){
                     dialogo.show();
@@ -70,31 +69,6 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         });
     }
 
-    /*
-    public void comprobarRegistro(String nombre){
-        try(
-               Connection conexDt = (Connection) DriverManager.getConnection("jdbc:mysql://" + ActivityLogin.ip + "/base20171", "ubase20171", "pbase20171");
-               Statement sentenciaDt = (Statement) conexDt.createStatement();
-                ){
-            control=true;
-            ResultSet resul=null;
-            String sql ="SELECT username from usuarios";
-            new registrarUsuario(sql);
-
-
-
-            while(comprobacion.next()){
-                System.out.println("ESTA en el while");
-                if(nombre.equalsIgnoreCase(resul.getString(2))){
-                    System.out.println("entro en el if");
-                    control= false;
-                }
-            }
-
-            System.out.println("salio del while");
-        }catch(Exception ex){System.err.println("Error -> "+ex.getMessage());}
-    }
-    */
 //--------------------------------------------------------------------------------------------------
     public class registrarUsuario extends AsyncTask<Object, Object, Integer> {
 
@@ -108,10 +82,6 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             this.dialog=dialog;
         }
 
-        public registrarUsuario(String consultaDt) {
-            this.consultaDt = consultaDt;
-        }
-
         @Override
         protected Integer doInBackground(Object... params) {
             int result=0;
@@ -120,20 +90,12 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 sentenciaDt = conexDt.createStatement();
                 publishProgress();
 
-                /*
-                if (consultaDt.startsWith("SELECT")) {
-                    comprobacion =sentenciaDt.executeQuery(consultaDt);
-
-                }
-                */
                 if (consultaDt.startsWith("INSERT")) {
                     result=sentenciaDt.executeUpdate(consultaDt);
                 }
 
-
-
             } catch (SQLException e) {
-                //Toast.makeText(getApplicationContext(),"Usuario No se pudo insertar.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Usuario No se pudo insertar.", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
             return result;

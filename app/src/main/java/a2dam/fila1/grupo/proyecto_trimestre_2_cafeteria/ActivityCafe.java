@@ -64,7 +64,6 @@ public class ActivityCafe extends AppCompatActivity {
     static float precioCafeFinal;
     static boolean datos = false;
     static boolean leche = false;
-    static String datosPedido;
     static int id;
     static String nombre;
     static int cant;
@@ -180,14 +179,10 @@ public class ActivityCafe extends AppCompatActivity {
 
                     switch (position){
                         case 0:
-                            //Toast.makeText(parent.getContext(), "Hola de prueba", Toast.LENGTH_LONG).show();
-
-
                                 precioCafe =0;
                                 setPrecio();
                                 llevaLeche(false);
                                 dialogo.dismiss();
-
 
                             break;
 
@@ -389,7 +384,6 @@ public class ActivityCafe extends AppCompatActivity {
         hielo       .setChecked(false);
         cantidad    .setText(""+1);
 
-        //setPrecio();
     }//Fin limpiar
 
     /**

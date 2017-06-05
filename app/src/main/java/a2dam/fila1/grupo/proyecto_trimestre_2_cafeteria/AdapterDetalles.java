@@ -93,7 +93,6 @@ public class AdapterDetalles extends BaseAdapter {
                             }).create().show();
                 }
             });
-//brtyr6hy6r5
         return v;
     }
 }
