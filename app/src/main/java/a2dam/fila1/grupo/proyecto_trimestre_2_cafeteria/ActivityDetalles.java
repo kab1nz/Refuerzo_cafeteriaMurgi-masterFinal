@@ -136,12 +136,12 @@ public class ActivityDetalles extends AppCompatActivity {
                     else if (!comprobarHora(hora)) {
                         Toast.makeText(getApplicationContext(), "Hora incorrecta. Horario 8:15-14:45.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Entra en el foorrrrr", Toast.LENGTH_SHORT).show();
+
                         for (Pedido p : BDFinal.pedidosFinal) {
                             dialogo.show();
-                            String insert = "insert into pedidos (idProducto, idCliente, complementos, hora, cantidad, precio, estado) "
+                            String insert = "insert into pedidos (num_pedido, idProducto, idCliente, complementos, hora, cantidad, precio, estado) "
 
-                                    + "values (" + p.getProducto().getNumProducto() + ","
+                                    + "values ("+300+" , "+ p.getProducto().getNumProducto() + ","
 
                                     + ActivityLogin.USER.getId() + ", '" + p.getComentarios() + "', "
 
@@ -149,9 +149,10 @@ public class ActivityDetalles extends AppCompatActivity {
 
                                     + p.getPrecio() + ", " + 0 + ");";
 
-                            Toast.makeText(getApplicationContext(),"Insertado realizado con exito.", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(),"Insertado realizado con exito.", Toast.LENGTH_LONG).show();
 
                             new Insertar(insert, dialogo).execute();
+
                         }
                     }
                 }
@@ -214,6 +215,10 @@ public class ActivityDetalles extends AppCompatActivity {
 
                 conexDt.close();
                 sentenciaDt.close();
+
+                //De vuelta al activity cafe
+                Intent myintent = new Intent(getApplicationContext(), ActivityCafe.class);
+                startActivity(myintent);
 
             }
             catch (SQLException e)
