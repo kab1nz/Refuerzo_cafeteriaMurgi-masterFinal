@@ -3,6 +3,7 @@ package a2dam.fila1.grupo.proyecto_trimestre_2_cafeteria;
 
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -146,7 +147,7 @@ public class ActivityCafe extends AppCompatActivity {
     /**
      * Captura la acción de pulsar el botón atrás y vuelve a la pantalla de login, borrando los pedidos guardados
      */
-    /*
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -156,13 +157,13 @@ public class ActivityCafe extends AppCompatActivity {
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface arg0, int arg1) {
-                        //ActivityLogin.USER=null;
+                        ActivityLogin.USER=null;
                         BDFinal.pedidosFinal.clear();
                         finish();
                     }
                 }).create().show();
     }
-    */
+
 
 
     /**

@@ -33,15 +33,12 @@ import dmax.dialog.SpotsDialog;
 public class ActivityLogin extends AppCompatActivity {
 
     AlertDialog dialogo;
-    private boolean doubleBackToExitPressedOnce = false;
 
     public static Usuario USER;
-    public static String ip = null;
+    public static String ip = "www.iesmurgi.org";
 
     private EditText usuario, pass;
     private Button entrar,registro;
-    private ImageButton ayuda;
-    private RadioButton local, externa;
 
     static boolean loginCorrecto;
 
@@ -57,8 +54,6 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         inflar();
-        calcularIP();
-        listener();
         registroLog();
 
         login();
@@ -73,32 +68,6 @@ public class ActivityLogin extends AppCompatActivity {
 
 
     /**
-     *
-     * calcularIP, compruba los radioButton y establece una IP para la conexión con la BBDD
-     */
-    private void calcularIP() {
-        if (local.isChecked())
-            ip = "                static int n=5;\n";
-        if (externa.isChecked())
-            ip = "www.iesmurgi.org";
-    }//Fin calcularIP
-
-    /**
-     * Métodos listener
-     */
-    private void listener() {
-
-        ayuda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog_pass dialogo= new Dialog_pass();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                dialogo.show(ft, "Contraseñas");
-            }
-        });
-    }//Fin listener
-
-    /**
      * Infla todos los elementos del layout del activity
      */
     private void inflar() {
@@ -107,9 +76,6 @@ public class ActivityLogin extends AppCompatActivity {
         pass     = (EditText) findViewById(R.id.et_lg_pass);
         entrar   = (Button) findViewById(R.id.btn_lg_entrar);
         registro = (Button) findViewById(R.id.btn_registrologin);
-        ayuda    = (ImageButton) findViewById(R.id.ibtn_lg_ayuda);
-        local    = (RadioButton) findViewById(R.id.rb_lg_local);
-        externa  = (RadioButton) findViewById(R.id.rb_lg_externa);
     }//Fin inflar
 
     /**
@@ -162,15 +128,6 @@ public class ActivityLogin extends AppCompatActivity {
             default:
         }
     }//Fin lanzarActivity
-
-    /**
-     * radio, metodo onClick de los radio button implementado en el XML
-     * cambia la IP cada vez que se marca un radio button
-     * @param view
-     */
-    public void radio(View view) {
-        calcularIP();
-    }//Fin radio
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

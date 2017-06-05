@@ -50,7 +50,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 String mail = etMail.getText().toString();
                 String tel = etTele.getText().toString();
 
-                comprobarRegistro(nombre);
+                //comprobarRegistro(nombre);
 
                 if(control){
                     dialogo.show();
@@ -70,6 +70,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         });
     }
 
+    /*
     public void comprobarRegistro(String nombre){
         try(
                Connection conexDt = (Connection) DriverManager.getConnection("jdbc:mysql://" + ActivityLogin.ip + "/base20171", "ubase20171", "pbase20171");
@@ -93,7 +94,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             System.out.println("salio del while");
         }catch(Exception ex){System.err.println("Error -> "+ex.getMessage());}
     }
-
+    */
 //--------------------------------------------------------------------------------------------------
     public class registrarUsuario extends AsyncTask<Object, Object, Integer> {
 
@@ -119,11 +120,12 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 sentenciaDt = conexDt.createStatement();
                 publishProgress();
 
+                /*
                 if (consultaDt.startsWith("SELECT")) {
                     comprobacion =sentenciaDt.executeQuery(consultaDt);
 
                 }
-
+                */
                 if (consultaDt.startsWith("INSERT")) {
                     result=sentenciaDt.executeUpdate(consultaDt);
                 }
